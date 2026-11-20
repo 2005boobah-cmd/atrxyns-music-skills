@@ -1,0 +1,2 @@
+-r requirements-video.txt
+faster-whisper>=1.0

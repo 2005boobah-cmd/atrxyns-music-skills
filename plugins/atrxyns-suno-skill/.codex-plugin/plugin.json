@@ -1,0 +1,23 @@
+{
+  "interface": {
+    "capabilities": [],
+    "category": "Creativity",
+    "defaultPrompt": [
+      "Write an original Suno-ready song in my chosen genre with thoughtful lyrics and a memorable hook.",
+      "Improve these lyrics for rhythm, meaning, and natural delivery while keeping them under 5,000 characters.",
+      "Create clear Styles and Exclude Styles prompts for the sound I describe."
+    ],
+    "developerName": "Why Though",
+    "displayName": "Atrxyns Suno Skill",
+    "longDescription": "Write and refine original Suno-ready songs across all genres. Includes lyric and hook development, genre-specific rhythm and phrasing, advanced rap rhyme and wordplay checks, style and exclusion prompts, and a Python checker keeping the complete lyrics field below 5,000 characters. Provides writing guidance and bundled scripts; does not connect to Suno or generate audio directly.",
+    "shortDescription": "Suno songwriting, every genre"
+  },
+  "name": "atrxyns-suno-skill",
+  "version": "1.2.0",
+  "description": "Original Suno-ready songwriting and revision across all genres, with genre-specific craft guidance and a strict lyrics character checker.",
+  "author": {
+    "name": "Why Though"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

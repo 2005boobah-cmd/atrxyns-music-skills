@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "name": "Why Though"
+  },
+  "description": "Create cohesive UnkownSongs music visualizers and lyric videos with cinematic backgrounds, a polished reactive spectrum, accurate lyric workflows, and reusable local rendering scripts.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [],
+        "category": "Creativity",
+        "defaultPrompt": [
+          "Make an UnkownSongs lyric video for this song with aesthetic backgrounds and a polished audio-reactive visualizer.",
+          "Make a vertical UnkownSongs music video with timed lyrics for TikTok.",
+          "Improve this music video's backgrounds and visualizer while keeping my UnkownSongs branding consistent."
+        ],
+        "developerName": "Why Though",
+        "displayName": "UnkownSongs Video Studio",
+        "longDescription": "Turn an uploaded song into a branded lyric video or visualizer. Keep a consistent midnight, ivory, lavender and amber visual identity while tailoring cinematic scenes to each song. Includes a rounded, glowing audio-reactive spectrum, lyric timing and review, previews, horizontal and vertical layouts, portable rendering scripts, and reliable file delivery. Runs with available file execution tools; does not include a hosted rendering server or paid generation credits.",
+        "shortDescription": "Cinematic music & lyric videos"
+      }
+    }
+  },
+  "name": "unkownsongs-video-studio",
+  "version": "1.2.1"
+}

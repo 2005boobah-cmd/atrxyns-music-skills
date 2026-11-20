@@ -1,0 +1,7 @@
+{
+  "interface": {
+    "display_name": "Atrxyns Suno Skill",
+    "short_description": "Write and refine Suno songs across all genres",
+    "default_prompt": "Use $atrxyns-suno-skill to create a complete Suno song package with original lyrics, styles, exclusions, and settings."
+  }
+}

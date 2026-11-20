@@ -1,0 +1,110 @@
+{
+  "version": 3,
+  "brand": "UnkownSongs",
+  "palette": {
+    "midnight": "#080B17",
+    "ivory": "#F3EEE6",
+    "lavender": "#B8A4F4",
+    "amber": "#F0C181",
+    "muted": "#A5A4B4",
+    "crimson": "#AE1C30"
+  },
+  "type": {
+    "preferred": [
+      "Inter",
+      "Aptos",
+      "Segoe UI",
+      "DejaVu Sans"
+    ],
+    "brand_weight": "custom lettering baked into permanent PNG",
+    "lyric_weight": "semibold",
+    "chorus_weight": "bold",
+    "max_lyric_lines": 2
+  },
+  "visualizer": {
+    "shape": "mirrored-rounded-spectrum-ribbon",
+    "bands": 56,
+    "attack": 0.65,
+    "release": 0.12,
+    "glow_radius": 9,
+    "amplitude_reference": "global-96th-percentile",
+    "random_motion": false
+  },
+  "identity": {
+    "brand_always_visible": true,
+    "scene_styles": [
+      "afterhours",
+      "summer-memory",
+      "rain-on-glass",
+      "moonlit-coast",
+      "liminal-neon",
+      "abstract-ink"
+    ],
+    "avoid": [
+      "thin ring and wireframe grid",
+      "giant opaque panels",
+      "unrelated random imagery",
+      "hard flashes"
+    ],
+    "brand_asset": "UnkownSongs_Brand_Emblem.png",
+    "reuse_brand_asset": true,
+    "badge_asset": "assets/UnkownSongs_Brand_Emblem.png",
+    "badge_treatment": "gunmetal crescent, charcoal smoke, chrome wordmark, restrained crimson highlights, transparent silhouette"
+  },
+  "layouts": {
+    "16:9": {
+      "safe": [
+        0.06,
+        0.06,
+        0.94,
+        0.94
+      ],
+      "spectrum": [
+        0.2,
+        0.53,
+        0.6,
+        0.16
+      ],
+      "lyrics_y": 0.79
+    },
+    "9:16": {
+      "safe": [
+        0.09,
+        0.09,
+        0.84,
+        0.81
+      ],
+      "spectrum": [
+        0.12,
+        0.49,
+        0.72,
+        0.12
+      ],
+      "lyrics_y": 0.7
+    }
+  },
+  "default_export": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "audio_codec": "aac",
+    "audio_bitrate": "256k",
+    "video_codec": "libx264",
+    "crf": 20
+  },
+  "default_layout": "badge",
+  "badge": {
+    "landscape_center": [
+      0.5,
+      0.49
+    ],
+    "portrait_center": [
+      0.465,
+      0.42
+    ],
+    "diameter_short_side": 0.52,
+    "landscape_lyrics_y": 0.855,
+    "portrait_lyrics_y": 0.69,
+    "particle_color": "#F6F5EE"
+  }
+}

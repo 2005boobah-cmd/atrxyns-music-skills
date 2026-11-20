@@ -1,0 +1,32 @@
+{
+  "name": "atrxyns-music-skills",
+  "interface": {
+    "displayName": "Atrxyns Music Skills"
+  },
+  "plugins": [
+    {
+      "name": "atrxyns-suno-skill",
+      "source": {
+        "source": "local",
+        "path": "./plugins/atrxyns-suno-skill"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "unkownsongs-video-studio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/unkownsongs-video-studio"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Creativity"
+    }
+  ]
+}

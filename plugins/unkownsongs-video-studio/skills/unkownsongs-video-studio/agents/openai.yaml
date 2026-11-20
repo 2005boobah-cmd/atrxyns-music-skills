@@ -1,0 +1,6 @@
+interface:
+  display_name: "UnkownSongs Video Studio"
+  short_description: "Cinematic lyric videos and reactive audio visuals"
+  default_prompt: "Use $unkownsongs-video-studio to make a branded lyric video for this song with cinematic backgrounds and a polished spectrum ribbon."
+policy:
+  allow_implicit_invocation: true
