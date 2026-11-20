@@ -1,6 +1,6 @@
 # Private music skills: maintained source
 
-Prepared from the owned Suno 1.2.0 and Video Studio 1.2.1 releases on 2026-11-19. This directory is not yet a hosted repository. No recipient access has been granted.
+Prepared from the owned Suno 1.2.0 and Video Studio 1.2.1 releases on 2026-11-19. Maintained repository: https://github.com/2005boobah-cmd/atrxyns-music-skills (private; verified through the authenticated GitHub API). No recipient access has been granted.
 
 ## Distribution choice
 
@@ -15,7 +15,7 @@ The existing personal cloud plugins remain private and unchanged. Their backend 
 3. Give your friend authenticated READ access only. Do not grant plugin editor access. GitHub personal-repository collaborators may have write access; use an organization repository with its Read role, or another Git service that can enforce read-only access. Check the actual role before sending access. No invitation has been sent.
 4. Both machines need Git authentication that can read this private repository. Use credential manager or SSH setup, never tokens embedded in a URL or this package.
 
-No working installation URL exists until the repository is hosted. Replace 2005boobah-cmd/atrxyns-music-skills below with its actual path; these are placeholders, not install links.
+The commands below reference this repository. They require authenticated read access; a private repository URL alone does not grant access.
 
 ## Friend: install once
 
