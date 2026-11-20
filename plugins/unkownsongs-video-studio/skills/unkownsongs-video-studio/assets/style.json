@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "brand": "Nox FM",
   "palette": {
     "midnight": "#080B17",
@@ -22,13 +22,15 @@
     "max_lyric_lines": 2
   },
   "visualizer": {
-    "shape": "mirrored-rounded-spectrum-ribbon",
+    "shape": "edge-rooted-layered-smoke-v3",
     "bands": 56,
     "attack": 0.65,
     "release": 0.12,
     "glow_radius": 9,
     "amplitude_reference": "global-96th-percentile",
-    "random_motion": false
+    "random_motion": false,
+    "implementation": "scripts/badge_effects.py",
+    "particle_contrast": "dark keyline with bright crimson/silver core"
   },
   "identity": {
     "brand_always_visible": true,

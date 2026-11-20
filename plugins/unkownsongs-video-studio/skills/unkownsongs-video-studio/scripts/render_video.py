@@ -129,9 +129,9 @@ def prepare_type(work,cfg,cues,w,h,start,duration):
     boldfamily=ImageFont.truetype(str(bold),24).getname()[0]
     cx=w*(.47 if portrait else .5)
     badge = cfg.get("layout", "badge") == "badge"
-    lyric_y = h * ((.69 if portrait else .855) if badge else (.70 if portrait else .79))
+    lyric_y = h * ((.69 if portrait else .83) if badge else (.70 if portrait else .79))
     safe=w*(.74 if portrait else .86)
-    sizes=((72 if portrait else 91) if badge else (56 if portrait else 54))*unit
+    sizes=((72 if portrait else 65) if badge else (56 if portrait else 54))*unit
     font=ImageFont.truetype(str(regular),max(12,round(sizes)))
     fontb=ImageFont.truetype(str(bold),max(12,round(sizes*1.06)))
     lyric_color = "&H00FFFFFF" if badge else "&H00E6EEF3"
@@ -359,127 +359,7 @@ def draw_badge(overlay, cfg, font):
     overlay.alpha_composite(badge, (round(x-radius),round(y-radius)))
 
 
-class BadgeEffects:
-    def __init__(self, width, height, logo=None):
-        from PIL import Image, ImageOps
-        self.logo = Image.open(logo).convert('RGBA') if logo else None
-        self.motion = 0.; self.velocity = 0.; self.travel = 0.; self.last_time = None
-        self.logo_cache = {}
-        self.width, self.height = width, height
-        self.x, self.y, self.radius = badge_geometry(width,height)
-        if width >= height:
-            self.y = height*.40  # Reserve room for bass excursions above two-line lyrics.
-        import numpy as np
-        self.palette = [(62,6,17),(151,15,34),(43,34,39),(62,64,70),(145,147,151),(103,12,29),(62,6,17)]
-        yy,xx=np.mgrid[0:height,0:width]
-        phase=(np.arctan2(yy-self.y,xx-self.x)/math.tau+.5)%1
-        stops=np.linspace(0,1,len(self.palette))
-        rgb=np.stack([np.interp(phase,stops,[color[k] for color in self.palette]) for k in range(3)],axis=-1).astype(np.uint8)
-        self.radial = np.hypot(xx-self.x,yy-self.y)/(self.radius*.88)
-        self.angle = np.arctan2(yy-self.y,xx-self.x)
-        # Precompute the static metal material; only its silhouette changes per frame.
-        radial=self.radial
-        shade=(.40+.40*np.exp(-((radial-1.09)/.065)**2)
-                  +.27*np.exp(-((radial-1.29)/.10)**2))
-        light=np.maximum(0,np.cos(self.angle+2.3))**12
-        silver=(42*light*np.exp(-((radial-1.15)/.17)**2))
-        rgb=np.clip(rgb.astype(np.float32)*shade[...,None]+silver[...,None],0,255).astype(np.uint8)
-        self.material=Image.fromarray(rgb).convert('RGBA')
-        self.rgb_base = rgb.astype(np.float32)
-        self.color_field=Image.fromarray(rgb).convert('RGBA')
-        self.aura_res=320
-        grid=np.linspace(-1.75,1.75,self.aura_res,dtype=np.float32)
-        ay,ax=np.meshgrid(grid,grid,indexing='ij')
-        self.aura_r=np.hypot(ax,ay)
-        self.aura_a=np.arctan2(ay,ax)
-        phase=(self.aura_a/math.tau+.5)%1
-        palette=[(140,8,29),(214,25,48),(65,48,56),(134,138,146),(214,214,215),(166,12,38),(140,8,29)]
-        self.aura_rgb=np.stack([np.interp(phase,np.linspace(0,1,len(palette)),[v[k] for v in palette]) for k in range(3)],axis=-1).astype(np.uint8)
-        rng = random.Random(74)
-        self.particles = [(rng.random(), rng.random(), rng.uniform(.35,1.05),
-                           rng.uniform(.007,.029), rng.uniform(0,6.28), rng.randrange(45,150))
-                          for _ in range(76)]
-
-    def frame(self, values, time, bass=0., kick=0., voice=0., treble=0.):
-        from PIL import Image, ImageDraw, ImageOps
-        dt = min(.1,max(1/120,time-self.last_time)) if self.last_time is not None else 1/24
-        self.last_time=time
-        self.velocity += (kick*22+bass*3-self.motion*32)*dt
-        self.velocity *= math.exp(-5*dt)
-        self.motion += self.velocity*dt
-        self.travel += dt*(.5+3.2*bass+2*kick+1.2*treble)
-        image = Image.new("RGBA", (self.width,self.height))
-        draw = ImageDraw.Draw(image)
-        for px, py, size, speed, phase, light in self.particles:
-            x = (px + .012*math.sin(time*.4+phase))*self.width
-            y = ((py-self.travel*speed)%1)*self.height
-            dx,dy=x-self.x,y-self.y
-            distance=max(1.,math.hypot(dx,dy))
-            push=self.motion*self.radius*(.65+.35*math.sin(phase)**2)
-            x+=dx/distance*push; y+=dy/distance*push
-            size*=1+.9*bass+.65*kick+.35*treble
-            opacity = min(245,light*(.65+.35*math.sin(time*.7+phase))*(1+1.1*bass+.7*kick))
-            if y > self.height*(.60 if self.height>self.width else .73):
-                opacity *= .22
-            draw.ellipse((x-size,y-size,x+size,y+size),
-                         fill=(235,102,94,round(opacity*.65)))
-            if kick>.28 or treble>.65:
-                draw.line((x,y,x-dx/distance*(2+9*kick),y-dy/distance*(2+9*kick)),fill=(210,50,55,round(opacity*.4)),width=1)
-        # A feathered translucent smoke field floats clear of a fixed circular border.
-        import numpy as np
-        radius=self.radius*.88
-        theta=self.aura_a; radial=self.aura_r
-        drift=self.travel*.13
-        folds=(.045*np.sin(3*theta+drift)+.026*np.sin(7*theta-drift*.6)
-               +.014*np.sin(13*theta+drift*.3))
-        center=1.025+.055*bass+.025*kick+folds*(.30+.70*bass)
-        width=.045+.055*bass+.020*kick
-        turbulence=(.65+.20*np.sin(theta*9+radial*33+drift)
-                       +.15*np.sin(theta*17-radial*21-drift*.7))
-        patches=np.clip(.48+.31*np.sin(2*theta+.6)+.24*np.cos(5*theta-drift*.3),0,1)
-        body=np.exp(-((radial-center)/width)**2)*patches*turbulence
-        ghost=np.exp(-((radial-center-.075-.025*np.sin(theta*5+drift))/(width*1.55))**2)
-        ghost*=np.clip(.25+.22*np.sin(4*theta+drift),0,.6)
-        curl=.024*np.sin(theta*7+radial*12+drift)+.012*np.sin(theta*19-radial*45-drift*.6)
-        fibers=np.exp(-((radial-center+curl)/(.012+.008*bass))**2)*patches*turbulence
-        root=np.exp(-((radial-1.018)/.028)**2)*patches*.23
-        density=np.clip(body*2.15+ghost*.8+fibers*.85+root*1.3,0,1)
-        density*=np.clip((radial-1.0)/.018,0,1)
-        alpha=np.clip(density*(180+65*bass+35*kick),0,240).astype(np.uint8)
-        rgba=np.dstack((self.aura_rgb,alpha))
-        smoke=Image.fromarray(rgba,'RGBA')
-        side=round(radius*3.5)
-        smoke=smoke.resize((side,side),Image.Resampling.LANCZOS)
-        image.alpha_composite(smoke,(round(self.x-side/2),round(self.y-side/2)))
-        # A second finer, silver mist follows vocal-range energy independently.
-        vc=1.025+.035*voice+.014*np.sin(6*theta-drift*.8)
-        vwidth=.012+.018*voice
-        vdensity=np.exp(-((radial-vc)/vwidth)**2)
-        vdensity*=np.clip(.25+.25*np.sin(3*theta+1.2)+.28*np.cos(7*theta-drift),0,.8)
-        va=np.clip(vdensity*(90+135*voice),0,185).astype(np.uint8)
-        vrgb=np.empty((*radial.shape,3),dtype=np.uint8);vrgb[:]=(198,195,192)
-        mist=Image.fromarray(np.dstack((vrgb,va)),'RGBA').resize((side,side),Image.Resampling.LANCZOS)
-        image.alpha_composite(mist,(round(self.x-side/2),round(self.y-side/2)))
-        edge=ImageDraw.Draw(image)
-        edge.ellipse((self.x-radius,self.y-radius,self.x+radius,self.y+radius),
-                     outline=(18,19,24,255),width=max(2,round(radius*.026)))
-        edge.ellipse((self.x-radius,self.y-radius,self.x+radius,self.y+radius),
-                     outline=(224,223,220,255),width=max(1,round(radius*.012)))
-        if self.logo is not None:
-            diameter=round(2*self.radius*(1+.045*bass+.025*kick))
-            diameter=round(diameter/2)*2
-            if diameter not in self.logo_cache:
-                # Keep the exact square NFM artwork within the fixed circle.
-                from PIL import ImageDraw, ImageChops
-                size = min(diameter, round(2*self.radius*.96))
-                emblem = ImageOps.contain(self.logo,(size,size),Image.Resampling.LANCZOS)
-                mask = Image.new('L', emblem.size, 0)
-                ImageDraw.Draw(mask).ellipse((0,0,emblem.width-1,emblem.height-1),fill=255)
-                emblem.putalpha(ImageChops.multiply(emblem.getchannel('A'),mask))
-                self.logo_cache[diameter]=emblem
-            emblem=self.logo_cache[diameter]
-            image.alpha_composite(emblem,(round(self.x-emblem.width/2),round(self.y-emblem.height/2-self.radius*.018*kick)))
-        return image
+from badge_effects import BadgeEffects
 
 
 def main():
@@ -549,3 +429,4 @@ if __name__=="__main__":
     try:main()
     except (ValueError,RuntimeError,KeyError) as e:
         print(str(e),file=sys.stderr);sys.exit(1)
+

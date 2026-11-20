@@ -16,11 +16,11 @@
         ],
         "developerName": "Why Though",
         "displayName": "Nox FM Video Studio",
-        "longDescription": "Turn an uploaded song into a branded lyric video or visualizer. Keep a consistent midnight, ivory, lavender and amber visual identity while tailoring cinematic scenes to each song. Includes a rounded, glowing audio-reactive spectrum, lyric timing and review, previews, horizontal and vertical layouts, portable rendering scripts, and reliable file delivery. Runs with available file execution tools; does not include a hosted rendering server or paid generation credits.",
+        "longDescription": "Create Nox FM music videos and lyric visualizers using real footage selected for the genre and lyrics. Includes the reusable NFM artwork, a fixed silver circle, layered crimson/silver smoke driven by bass and midrange energy, outlined reactive particles, reviewed lyric timing, and portable local rendering scripts. Requires suitable execution tools and rendering dependencies.",
         "shortDescription": "Cinematic music & lyric videos"
       }
     }
   },
   "name": "unkownsongs-video-studio",
-  "version": "1.2.3"
+  "version": "1.2.4"
 }

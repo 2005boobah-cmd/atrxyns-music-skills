@@ -42,4 +42,4 @@ Keep the wordmark readable at mobile size. Keep social-platform controls in mind
 
 Preserve a restrained cinematic finish: stable exposure, believable color, subtle movement. Do not add hard strobes or deep bloom that turns text/spectrum into glare.
 
-Current visualizer direction: fixed silver circular border, with a separate thick filled blob outside it in gunmetal, silver and deep crimson matching the reusable PNG. Many rounded protrusions respond around the circle; no triangular three-lobe shape, separate bars or unrelated rainbow palette.
+Approved visualizer: Preview 03, implemented in scripts/badge_effects.py. Edge-rooted layered smoke, long uneven bass tendrils, finer silver filaments, visible outlined sparks and a fixed crisp circle. Keep smoke outside the opaque NFM logo. Prefer real clips selected for genre and lyric meaning, not generic driving/balcony montages.

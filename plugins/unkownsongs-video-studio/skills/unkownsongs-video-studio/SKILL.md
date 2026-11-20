@@ -23,6 +23,10 @@ Choose cinematic environments that support the lyric's imagery and emotional arc
 
 Use only real photographs and real video clips for all scene imagery and backgrounds. Do not use AI-generated or AI-reconstructed pictures, AI-generated video, synthetic environments, or procedural scenery. Source user-provided media or licensed footage/photographs, verify the source, and record creator, source URL and license. Editing, cropping, grading, gentle photo movement, typography, branding and audio-reactive graphics are allowed; they must not replace the real scene imagery. Do not spend paid credits, buy assets, or initiate subscription upgrades without authorization. If suitable real media cannot be sourced, explain the specific missing asset instead of substituting generated scenery.
 
+## Media selection: motion and meaning
+
+Prefer real camera footage over still photographs. Select clips for both the song's genre/production energy and its specific lyrics, emotional arc and setting. Do not use a generic car/rooftop/balcony montage just because a song is rap. Explain each scene's function in the production plan; remove clips that feel interchangeable across unrelated songs. Photos remain a fallback when suitable real clips cannot be sourced. Never use synthetic or AI-generated scenery. Do not bundle a fixed scenic clip pack.
+
 ## Make the visualizer feel designed
 
 Use the permanent chrome/crimson NFM profile PNG at assets/NFM_Brand_Emblem.png. This is branding only, never background scenery. Do not bundle a stock scene pack or reuse the logo/PFP as a scene. Select licensed real photographs and clips for each song after interpreting its lyrics. The renderer loads this exact logo automatically; preserve its exact NFM lettering and colors rather than regenerating the logo. Keep a crisp fixed silver circular border around it.
@@ -34,6 +38,12 @@ Match the PNG palette: deep crimson/oxblood, charcoal, gunmetal and brushed-silv
 Drive independent layers from the recording: 30-160 Hz bass and transients push the main edge-rooted smoke outward and pulse the emblem; 250-3500 Hz vocal-range energy shapes finer silver wisps; energy above 4000 Hz accents sparse crimson ember particles. Mid-frequency energy can include instruments: do not claim isolated vocals without source separation. Preserve bass-driven particle kicks and a spring-like settling response.
 
 Use global song calibration, fast attack and slower decay, retaining silence and quiet dynamics. No random beat triggers, per-frame loudness normalization, full-frame flashes or dense white snow. Keep captions stable and leave adequate clearance for peak motion. Render the emblem and fixed border sharply; cache static material/geometry where possible.
+
+The approved default is the Preview 03 implementation in `scripts/badge_effects.py`, imported by `scripts/render_video.py`. Reuse the actual implementation rather than approximating it with a glow or old ring. Its spectral spring response drives uneven edge-rooted crimson tendrils, finer independent silver midrange filaments, soft outer wisps, and outward sparks with short trails. Keep the silver circle crisp and the NFM logo fixed and readable. Smoke must render OUTSIDE the opaque logo disc, with no empty gap at its root; never hide the response behind the artwork. Match crimson, oxblood, gunmetal and silver from the PNG. Avoid unrelated rainbow colors, solid rubber bands and uniform spikes.
+
+Particles need a dark keyline and bright crimson/silver core so they remain visible against bright practical lights as well as shadows. Preserve the lyric exclusion zone. Inspect particle contrast on the selected footage; adjust grading or particle contrast when needed rather than flooding the screen with particles.
+
+When iterating on appearance, make only short previews until the user accepts the look. After acceptance, update the reusable skill when requested; a full-song render requires the user to resume or request that export.
 
 Use the earlier ribbon or discrete spectrum only when specifically requested. Inspect a short actual rendered preview at both quiet and bass-heavy moments before exporting the full song.
 
@@ -58,3 +68,4 @@ Use one or two readable lines, strong contrast, generous margins, and no collisi
 
 
 Make the edge-rooted smoky aura prominent: rich crimson, visible gunmetal/silver variation, denser feathered wisps and broader bass excursions. Keep the fixed circle distinct and the center clear; do not reduce the smoke to a barely visible haze.
+
