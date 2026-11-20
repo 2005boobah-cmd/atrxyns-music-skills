@@ -74,3 +74,8 @@ Make the edge-rooted smoky aura prominent: rich crimson, visible gunmetal/silver
 ## Seamless scenic repetition
 
 Never repeat scenic footage with an abrupt last-frame to first-frame jump. Prefer a clip long enough for the shot. When repetition is necessary, play forward, then reverse back, then forward again (ping-pong playback). Inspect both turnarounds for a visible jump or pause. Keep the original song audio forward and continuous; only the muted scenic clip reverses. If reversing produces implausible human action or traffic movement, choose a different clip or a shorter shot instead of using a hard loop.
+
+
+## Clip variety across the song
+
+Use multiple distinct real clips across a full song. Do not stretch one clip over the entire track, or alternate the same two clips for the whole video. Build a coherent sequence with new shots at meaningful lyrical and musical changes: verses, hooks, builds, drops, breakdowns and outro. Match every shot to both genre and song meaning. Forward/reverse repetition is only a short extension within an individual shot, never a substitute for sourcing enough footage. Review the whole scene list for excessive reuse before rendering; vary framing and action while keeping a consistent visual world. A single-backdrop visualizer is allowed only when the user explicitly requests it.

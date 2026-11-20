@@ -18,7 +18,7 @@ Default to afterhours/summer-memory for nostalgic songs; select from the song ra
 
 Map intro → verses → choruses → bridge → final chorus → outro. Track emotional change: establish a place, reveal personal detail, widen the world in the chorus, withdraw for the bridge, return with changed light or perspective. Use recurring motifs with a different composition, not identical duplicates.
 
-A single strong backdrop with slow movement works for a full visualizer. If the song benefits from scene changes, use a few connected views with long holds and change them at musical pivots. Keep the badge anchored through each transition.
+Use multiple distinct real clips across a full song. Do not stretch one clip over the entire track, or alternate the same two clips for the whole video. Build a coherent sequence with new shots at meaningful lyrical and musical changes: verses, hooks, builds, drops, breakdowns and outro. Match every shot to both genre and song meaning. Forward/reverse repetition is only a short extension within an individual shot, never a substitute for sourcing enough footage. Review the whole scene list for excessive reuse before rendering; vary framing and action while keeping a consistent visual world. A single-backdrop visualizer is allowed only when the user explicitly requests it. Keep the badge anchored through transitions.
 
 Source real photographs and real video footage only. Inspect each selected asset for authentic camera capture and appropriate composition; reject AI-generated, reconstructed or synthetic scenes. Preserve source and license records. A still photograph with a pan remains a photograph, not live-action footage.
 
