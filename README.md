@@ -1,21 +1,21 @@
-# Private music skills: maintained source
+# Atrxyns Music Skills
 
-Prepared from the owned Suno 1.2.0 and Video Studio 1.2.1 releases on 2026-11-19. Maintained repository: https://github.com/2005boobah-cmd/atrxyns-music-skills (private; verified through the authenticated GitHub API). No recipient access has been granted.
+Suno songwriting and music-video plugins, maintained at https://github.com/2005boobah-cmd/atrxyns-music-skills. Prepared from Suno 1.2.0 and Video Studio 1.2.1. The owner made this repository public on 2026-11-19; anyone can read and install it without an invitation. Public access does not grant permission to edit this repository.
 
 ## Distribution choice
 
-Use one PRIVATE Git repository with two plugins in the included marketplace. Keep the marketplace name `atrxyns-music-skills`, both plugin names, and their source paths stable. Combining the skills would add migration work without fixing personal-account sharing.
+Use this public Git repository with two plugins in one marketplace. Keep the marketplace name `atrxyns-music-skills`, both plugin names, and their source paths stable.
 
 The existing personal cloud plugins remain private and unchanged. Their backend IDs are `plugins_6afb6d70e9608191807799732408d401` and `plugins_6afb7d12f6c081918e88d01ff9b1ee5f`. This marketplace does not convert or take over those cloud identities. Its installations use the stable marketplace/plugin names. Do not put the personal backend IDs into a workspace-import `pluginId`: OpenAI requires that target plugin to already belong to the importing workspace.
 
 ## Initial owner setup
 
-1. Create or select a PRIVATE Git repository owned by you or your organization. Publish only this directory, never the parent song workspace.
+1. Publish only this maintained source directory, never the parent song workspace. Everything committed here is public, including its Git history.
 2. Use `main` as the release branch. Keep drafts on a different branch. Push this prepared source to main for the initial release.
-3. Give your friend authenticated READ access only. Do not grant plugin editor access. GitHub personal-repository collaborators may have write access; use an organization repository with its Read role, or another Git service that can enforce read-only access. Check the actual role before sending access. No invitation has been sent.
-4. Both machines need Git authentication that can read this private repository. Use credential manager or SSH setup, never tokens embedded in a URL or this package.
+3. Readers need no collaborator invitation. Do not grant collaborator or plugin editor rights merely to enable installation.
+4. Publishing requires the owner's Git authentication. Public readers do not need GitHub authentication for HTTPS downloads. Never embed credentials in URLs or this package.
 
-The commands below reference this repository. They require authenticated read access; a private repository URL alone does not grant access.
+The commands below reference the public repository. No invitation is required.
 
 ## Friend: install once
 
