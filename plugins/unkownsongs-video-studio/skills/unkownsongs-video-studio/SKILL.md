@@ -69,3 +69,8 @@ Use one or two readable lines, strong contrast, generous margins, and no collisi
 
 Make the edge-rooted smoky aura prominent: rich crimson, visible gunmetal/silver variation, denser feathered wisps and broader bass excursions. Keep the fixed circle distinct and the center clear; do not reduce the smoke to a barely visible haze.
 
+
+
+## Seamless scenic repetition
+
+Never repeat scenic footage with an abrupt last-frame to first-frame jump. Prefer a clip long enough for the shot. When repetition is necessary, play forward, then reverse back, then forward again (ping-pong playback). Inspect both turnarounds for a visible jump or pause. Keep the original song audio forward and continuous; only the muted scenic clip reverses. If reversing produces implausible human action or traffic movement, choose a different clip or a shorter shot instead of using a hard loop.

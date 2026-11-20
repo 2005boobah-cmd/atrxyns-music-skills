@@ -14,7 +14,7 @@ Resolve these scripts relative to this skill directory. The file paths below are
   "font": "/actual/path/to/regular-or-semibold-font.ttf",
   "font_bold": "/actual/path/to/bold-font.ttf",
   "scenes": [
-    {"file": "scene_01.png", "duration": 20, "provenance": "generated"},
+    {"file": "scene_01.png", "duration": 20, "provenance": "licensed real photograph"},
     {"file": "scene_02.mp4", "duration": 24, "provenance": "user"}
   ],
   "output": "NoxFM_Song_Title.mp4"
@@ -46,3 +46,8 @@ python scripts/render_video.py project.json
 The timing command saves candidate cues and a sibling report. Inspect and correct candidates, remove `needs_review` after actually resolving the relevant cue, then point the renderer at the reviewed JSON. All timestamps remain relative to the original full recording, including for a preview.
 
 Use `--ffmpeg /actual/path/to/ffmpeg` if needed. The rendering command creates a task-local work directory beside the output, a final project snapshot, editable SRT and a preview JPG. Scene caches use content/config fingerprints to avoid re-rendering unchanged scenes. Revisions to captions only should reuse scenic clips. Do not include work directories or audio in a plugin archive.
+
+
+## Seamless scenic repetition
+
+Never repeat scenic footage with an abrupt last-frame to first-frame jump. Prefer a clip long enough for the shot. When repetition is necessary, play forward, then reverse back, then forward again (ping-pong playback). Inspect both turnarounds for a visible jump or pause. Keep the original song audio forward and continuous; only the muted scenic clip reverses. If reversing produces implausible human action or traffic movement, choose a different clip or a shorter shot instead of using a hard loop.

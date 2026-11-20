@@ -201,6 +201,20 @@ def fingerprint(path,settings):
         for chunk in iter(lambda:f.read(1024*1024),b""):digest.update(chunk)
     return digest.hexdigest()[:20]
 
+def pingpong_clip(ff,work,source,w,h,fps):
+    """Reverse short scenic clips before replaying; never jump end-to-start."""
+    settings={"w":w,"h":h,"fps":fps,"repeat":"forward-reverse-v1"}
+    out=work/f"pingpong_{fingerprint(source,settings)}.mp4"
+    if out.is_file():return out
+    # Normalize first so reverse buffers only the final frame dimensions/rate.
+    normalized=work/f"forward_{fingerprint(source,settings)}.mp4"
+    if not normalized.is_file():
+        run([ff,"-y","-v","error","-i",source,"-an","-vf",f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={fps},setsar=1","-c:v","libx264","-preset","veryfast","-crf","19",normalized])
+    # Skip the duplicate endpoint at each turnaround to avoid a two-frame pause.
+    graph="[0:v]split[f][b];[f]setpts=PTS-STARTPTS[forward];[b]reverse,trim=start_frame=1,setpts=PTS-STARTPTS[back];[forward][back]concat=n=2:v=1:a=0[v]"
+    run([ff,"-y","-v","error","-i",normalized,"-filter_complex",graph,"-map","[v]","-an","-c:v","libx264","-preset","veryfast","-crf","19","-pix_fmt","yuv420p",out])
+    return out
+
 def scenic_track(ff,work,scenes,w,h,fps,start,duration):
     end=start+duration;clips=[]
     images={".jpg",".jpeg",".png",".webp",".bmp",".tif",".tiff"}
@@ -209,7 +223,7 @@ def scenic_track(ff,work,scenes,w,h,fps,start,duration):
         if b<=a:continue
         dur=b-a;count=math.ceil(dur*fps);source=s["path"]
         image=source.suffix.lower() in images
-        settings={"w":w,"h":h,"fps":fps,"duration":dur,"offset":a-s["start"],"image":image,"v":1}
+        settings={"w":w,"h":h,"fps":fps,"duration":dur,"offset":a-s["start"],"image":image,"v":2}
         name=work/f"scene_{fingerprint(source,settings)}.mp4"
         if not name.is_file():
             pre=[ff,"-y","-v","error"]
@@ -218,7 +232,8 @@ def scenic_track(ff,work,scenes,w,h,fps,start,duration):
                 z=f"1+0.035*on/{max(1,count)}"
                 vf=f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},zoompan=z='{z}':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={w}x{h}:fps={fps}"
             else:
-                pre+=["-stream_loop","-1","-ss",str(a-s["start"]),"-i",source]
+                repeat_source=pingpong_clip(ff,work,source,w,h,fps)
+                pre+=["-stream_loop","-1","-ss",str(a-s["start"]),"-i",repeat_source]
                 vf=f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={fps}"
             fade=min(.3,dur/5)
             vf+=f",setsar=1,fade=t=in:st=0:d={fade},fade=t=out:st={max(0,dur-fade)}:d={fade}"

@@ -39,3 +39,8 @@ Give concrete progress based on actual completed stages. For slow renders, show 
 If suitable real photographs or clips are unavailable, preserve progress and identify the specific media needed. Do not substitute AI-generated or procedural scenery. Do not route a free user straight into a paid subscription; use the local renderer if capable. If the renderer or audio import is blocked, state the real blocker and preserve work.
 
 Use current Library save instructions. Return a concise result with a download link and actual local file path. Do not send a Library link alone: this user explicitly reported trouble opening those links. Offer editable captions/project only if useful; never expose secrets or temporary signed URLs.
+
+
+## Seamless scenic repetition
+
+Never repeat scenic footage with an abrupt last-frame to first-frame jump. Prefer a clip long enough for the shot. When repetition is necessary, play forward, then reverse back, then forward again (ping-pong playback). Inspect both turnarounds for a visible jump or pause. Keep the original song audio forward and continuous; only the muted scenic clip reverses. If reversing produces implausible human action or traffic movement, choose a different clip or a shorter shot instead of using a hard loop.
