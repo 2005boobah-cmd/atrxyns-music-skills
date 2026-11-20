@@ -79,3 +79,6 @@ Never repeat scenic footage with an abrupt last-frame to first-frame jump. Prefe
 ## Clip variety across the song
 
 Use multiple distinct real clips across a full song. Do not stretch one clip over the entire track, or alternate the same two clips for the whole video. Build a coherent sequence with new shots at meaningful lyrical and musical changes: verses, hooks, builds, drops, breakdowns and outro. Match every shot to both genre and song meaning. Forward/reverse repetition is only a short extension within an individual shot, never a substitute for sourcing enough footage. Review the whole scene list for excessive reuse before rendering; vary framing and action while keeping a consistent visual world. A single-backdrop visualizer is allowed only when the user explicitly requests it.
+
+
+Use short smooth dissolves between distinct clips, timed to musical phrase changes. The renderer now overlaps scenic shots with FFmpeg xfade while preserving total song duration. Keep the NFM circle, visualizer and caption layout continuous. Do not fade every scene to black or use abrupt unmotivated cuts. Avoid flashy preset wipes; use a harder cut only when the musical accent and scene justify it.

@@ -216,35 +216,44 @@ def pingpong_clip(ff,work,source,w,h,fps):
     return out
 
 def scenic_track(ff,work,scenes,w,h,fps,start,duration):
-    end=start+duration;clips=[]
-    images={".jpg",".jpeg",".png",".webp",".bmp",".tif",".tiff"}
-    for i,s in enumerate(scenes):
-        a=max(start,s["start"]);b=min(end,s["start"]+s["duration"])
-        if b<=a:continue
-        dur=b-a;count=math.ceil(dur*fps);source=s["path"]
-        image=source.suffix.lower() in images
-        settings={"w":w,"h":h,"fps":fps,"duration":dur,"offset":a-s["start"],"image":image,"v":2}
+    end=start+duration
+    selected=[(s,max(start,s["start"]),min(end,s["start"]+s["duration"])) for s in scenes if min(end,s["start"]+s["duration"])>max(start,s["start"])]
+    transition=min(.45,min(b-a for _,a,b in selected)/3)
+    transition=max(1/fps,round(transition*fps)/fps)
+    clips=[];durations=[]
+    for i,(s,a,b) in enumerate(selected):
+        dur=b-a;extra=transition if i<len(selected)-1 else 0
+        count=math.ceil((dur+extra)*fps);source=s["path"]
+        image=source.suffix.lower() in {".jpg",".jpeg",".png",".webp",".bmp",".tif",".tiff"}
+        settings={"w":w,"h":h,"fps":fps,"duration":dur+extra,"offset":a-s["start"],"image":image,"v":"dissolve-1"}
         name=work/f"scene_{fingerprint(source,settings)}.mp4"
         if not name.is_file():
             pre=[ff,"-y","-v","error"]
             if image:
-                pre+=["-loop","1","-framerate",str(fps),"-i",source]
-                z=f"1+0.035*on/{max(1,count)}"
-                vf=f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},zoompan=z='{z}':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={w}x{h}:fps={fps}"
+                pre += ["-loop","1","-framerate",str(fps),"-i",source]
+                vf=f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},zoompan=z='1+0.035*on/{max(1,count)}':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={w}x{h}:fps={fps}"
             else:
                 repeat_source=pingpong_clip(ff,work,source,w,h,fps)
-                pre+=["-stream_loop","-1","-ss",str(a-s["start"]),"-i",repeat_source]
+                pre += ["-stream_loop","-1","-ss",str(a-s["start"]),"-i",repeat_source]
                 vf=f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={fps}"
-            fade=min(.3,dur/5)
-            vf+=f",setsar=1,fade=t=in:st=0:d={fade},fade=t=out:st={max(0,dur-fade)}:d={fade}"
+            vf+=",setsar=1,settb=AVTB,setpts=PTS-STARTPTS"
             run(pre+["-vf",vf,"-frames:v",count,"-an","-c:v","libx264","-preset","veryfast","-crf","19","-pix_fmt","yuv420p",name])
-        clips.append(name)
+        clips.append(name);durations.append(dur)
         print(json.dumps({"stage":"scenes","finished":len(clips),"scene":i+1}),flush=True)
-    # Cache files have controlled, apostrophe-free names in this work directory.
-    (work/"concat.txt").write_text("\n".join("file '"+p.name+"'" for p in clips),encoding="utf8")
     out=work/"scenic.mp4"
-    run([ff,"-y","-v","error","-f","concat","-safe","0","-i","concat.txt","-c","copy",out.name],cwd=work)
+    if len(clips)==1:
+        run([ff,"-y","-v","error","-i",clips[0],"-t",duration,"-c","copy",out]);return out
+    command=[ff,"-y","-v","error","-filter_complex_threads","1"]
+    for clip in clips:command += ["-i",clip]
+    filters=[]
+    for i in range(len(clips)):filters.append(f"[{i}:v]settb=AVTB,setpts=PTS-STARTPTS[v{i}]")
+    previous="v0";offset=0
+    for i in range(1,len(clips)):
+        offset+=durations[i-1];label=f"blend{i}"
+        filters.append(f"[{previous}][v{i}]xfade=transition=fade:duration={transition:.6f}:offset={offset:.6f}[{label}]");previous=label
+    run(command+["-filter_complex",";".join(filters),"-map",f"[{previous}]","-t",duration,"-an","-c:v","libx264","-preset","veryfast","-crf","19","-pix_fmt","yuv420p",out])
     return out
+
 
 def analyze(wave,fps,start,duration,bands=56):
     import numpy as np

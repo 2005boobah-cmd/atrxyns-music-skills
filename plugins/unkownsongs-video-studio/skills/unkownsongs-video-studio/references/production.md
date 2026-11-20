@@ -26,7 +26,7 @@ Explicitly review the first line, chorus pickups, fast verses, long-held syllabl
 
 Default to full-song 1080p H.264 + AAC in MP4, 24 fps, fast-start, no unauthorized remastering. Respect user-chosen aspect ratio and length. Produce 720p when necessary instead of falsely advertising 1080p. Prefer an ordinary filename without spaces when rendering filters need it.
 
-The renderer uses silent scenic clips, concatenates them, then adds the original song once, the reactive visualizer, brand artwork and lyrics. Its chapter transitions use gentle dips; replace with proper dissolves when the creative direction warrants them. Do not accidentally concatenate audio with each scene or loop the song.
+The renderer uses silent scenic clips, concatenates them, then adds the original song once, the reactive visualizer, brand artwork and lyrics. Its scene transitions use short overlapping dissolves. Do not accidentally concatenate audio with each scene or loop the song.
 
 Run a short preview around an energetic section and inspect representative frame exports at the final dimensions. Check real audio/video streams, total duration tolerance (about one frame plus audio encoder padding), readable lyrics, safe margins, transitions, silence behavior and clipping. Test that every expected line is present and no arrangement note is displayed. Treat any missing cue as unresolved until corrected.
 
@@ -44,3 +44,6 @@ Use current Library save instructions. Return a concise result with a download l
 ## Seamless scenic repetition
 
 Never repeat scenic footage with an abrupt last-frame to first-frame jump. Prefer a clip long enough for the shot. When repetition is necessary, play forward, then reverse back, then forward again (ping-pong playback). Inspect both turnarounds for a visible jump or pause. Keep the original song audio forward and continuous; only the muted scenic clip reverses. If reversing produces implausible human action or traffic movement, choose a different clip or a shorter shot instead of using a hard loop.
+
+
+Use short smooth dissolves between distinct clips, timed to musical phrase changes. The renderer now overlaps scenic shots with FFmpeg xfade while preserving total song duration. Keep the NFM circle, visualizer and caption layout continuous. Do not fade every scene to black or use abrupt unmotivated cuts. Avoid flashy preset wipes; use a harder cut only when the musical accent and scene justify it.

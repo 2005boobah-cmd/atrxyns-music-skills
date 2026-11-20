@@ -43,3 +43,6 @@ Keep the wordmark readable at mobile size. Keep social-platform controls in mind
 Preserve a restrained cinematic finish: stable exposure, believable color, subtle movement. Do not add hard strobes or deep bloom that turns text/spectrum into glare.
 
 Approved visualizer: Preview 03, implemented in scripts/badge_effects.py. Edge-rooted layered smoke, long uneven bass tendrils, finer silver filaments, visible outlined sparks and a fixed crisp circle. Keep smoke outside the opaque NFM logo. Prefer real clips selected for genre and lyric meaning, not generic driving/balcony montages.
+
+
+Use short smooth dissolves between distinct clips, timed to musical phrase changes. The renderer now overlaps scenic shots with FFmpeg xfade while preserving total song duration. Keep the NFM circle, visualizer and caption layout continuous. Do not fade every scene to black or use abrupt unmotivated cuts. Avoid flashy preset wipes; use a harder cut only when the musical accent and scene justify it.
