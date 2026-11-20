@@ -51,3 +51,6 @@ Use `--ffmpeg /actual/path/to/ffmpeg` if needed. The rendering command creates a
 ## Seamless scenic repetition
 
 Never repeat scenic footage with an abrupt last-frame to first-frame jump. Prefer a clip long enough for the shot. When repetition is necessary, play forward, then reverse back, then forward again (ping-pong playback). Inspect both turnarounds for a visible jump or pause. Keep the original song audio forward and continuous; only the muted scenic clip reverses. If reversing produces implausible human action or traffic movement, choose a different clip or a shorter shot instead of using a hard loop.
+
+
+Optional `"accent_color": "#719EB2"` selects a muted blue song palette. Use any six-digit hex accent chosen for the song. It recolors saturated red accents in the NFM logo overlay and visualizer together while preserving the original PNG, alpha, chrome and neutral silver. Omit it only when the chosen song palette is the original crimson. Record the creative rationale in the project plan.

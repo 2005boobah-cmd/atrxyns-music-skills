@@ -30,7 +30,8 @@
     "amplitude_reference": "global-96th-percentile",
     "random_motion": false,
     "implementation": "scripts/badge_effects.py",
-    "particle_contrast": "dark keyline with bright crimson/silver core"
+    "particle_contrast": "dark keyline with bright crimson/silver core",
+    "accent_field": "accent_color"
   },
   "identity": {
     "brand_always_visible": true,
@@ -108,5 +109,6 @@
     "landscape_lyrics_y": 0.855,
     "portrait_lyrics_y": 0.69,
     "particle_color": "#F6F5EE"
-  }
+  },
+  "palette_policy": "Choose a song-specific accent from mood, genre, lyrics and footage; tint PNG overlay and visualizer together; preserve chrome and source PNG"
 }

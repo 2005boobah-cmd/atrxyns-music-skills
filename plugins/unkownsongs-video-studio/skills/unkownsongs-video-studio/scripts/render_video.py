@@ -422,7 +422,7 @@ def main():
     badge = cfg.get("layout", "badge") == "badge"
     if badge:
         vw, vh = w, h
-        effects = BadgeEffects(vw, vh, cfg.get('logo'))
+        effects = BadgeEffects(vw, vh, cfg.get('logo'), cfg.get('accent_color'))
         layers = f"[0:v][1:v]overlay=shortest=1[bg];[bg][3:v]overlay"
     else:
         layers = f"[0:v][3:v]overlay=0:0[bg];[bg][1:v]overlay={vx}:{vy}:shortest=1"

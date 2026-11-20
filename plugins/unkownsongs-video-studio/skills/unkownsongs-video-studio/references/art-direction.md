@@ -30,7 +30,7 @@ Reuse the permanent chrome/crimson NFM PNG at ../assets/NFM_Brand_Emblem.png wit
 
 The current treatment is a loose smoky aura emitted directly from the circle circumference. Its root hugs the border while bass pushes feathered wisps outward. Use uneven density, fine turbulent curls and soft open gaps within the smoke. The effect must not become a solid rubber ring, an opaque connected blob, detached solid pieces, an orbiting band separated from the circle, or a discrete bar equalizer.
 
-Use the recording to drive layered response: low-frequency energy and kicks control the main crimson/charcoal smoke and emblem pulse; vocal-range energy controls finer silver wisps; high frequencies accent sparse red embers. This is a band-energy estimate rather than isolated vocal stems. Match the permanent PNG's crimson, oxblood, gunmetal and silver tones, without a rainbow palette. Keep full-frame contrast steady.
+Use the recording to drive layered response: low-frequency energy and kicks control the main crimson/charcoal smoke and emblem pulse; vocal-range energy controls finer silver wisps; high frequencies accent sparse red embers. This is a band-energy estimate rather than isolated vocal stems. Match the song-specific logo accent and visualizer palette, keeping neutral gunmetal/silver detail and avoiding random rainbow cycling. Keep full-frame contrast steady.
 
 Anchor the identity slightly above center in widescreen to reserve room for peak smoke motion above two-line lyrics. Preserve quiet dynamics, avoid full-frame flashing, and inspect the actual preview during both a bass peak and a quieter vocal passage. Scenery remains real photographs and camera footage only; the aura is a graphic overlay.
 
@@ -46,3 +46,10 @@ Approved visualizer: Preview 03, implemented in scripts/badge_effects.py. Edge-r
 
 
 Use short smooth dissolves between distinct clips, timed to musical phrase changes. The renderer now overlaps scenic shots with FFmpeg xfade while preserving total song duration. Keep the NFM circle, visualizer and caption layout continuous. Do not fade every scene to black or use abrupt unmotivated cuts. Avoid flashy preset wipes; use a harder cut only when the musical accent and scene justify it.
+
+
+## Song-specific palette and fresh footage
+
+Before production, choose and record a song-specific palette with a reason grounded in the lyrics, genre and mood. Do not force every song to use red. For example, reflective music may suit muted blue/teal or warm amber; aggressive material may suit crimson or acid accents; these are examples, not rigid genre stereotypes. Keep the exact NFM geometry and equal-sized letters; shift only its colored accents, preserving chrome, shadow detail and the silver circle. The bundled source PNG is the master and must not be overwritten. The renderer's `accent_color` field recolors the logo overlay, smoke, rim accents and particles together at render time. Match scenery grading to that palette while keeping real footage believable. Use a short preview to check palette and contrast before a full export. Do not automatically change color on every beat; any palette evolution should follow meaningful song sections.
+
+Source fresh real clips for each new song. Do not default to footage downloaded for earlier videos. Check the source URLs/assets against prior projects and record intentional reuse. Reuse a recognizable shot only when the user approves the connection. Genre fit and lyric meaning must justify every selected clip.

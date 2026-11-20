@@ -3,7 +3,12 @@ import numpy as np
 from PIL import Image,ImageDraw,ImageOps,ImageChops,ImageFilter
 
 class BadgeEffects:
-    def __init__(self,width,height,logo=None):
+    def __init__(self,width,height,logo=None,accent_color=None):
+        import re,colorsys
+        from PIL import ImageColor
+        if accent_color is not None and (not isinstance(accent_color,str) or not re.fullmatch(r"#[0-9a-fA-F]{6}",accent_color)):
+            raise ValueError("accent_color must be a six-digit hex color, e.g. #719EB2")
+        self.accent_hsv=colorsys.rgb_to_hsv(*(v/255 for v in ImageColor.getrgb(accent_color))) if accent_color else None
         self.width,self.height=width,height
         self.x,self.y,self.radius=(width*.465,height*.42,width*.245) if height>width else (width*.5,height*.40,height*.245)
         logo=logo or str(__import__('pathlib').Path(__file__).resolve().parent.parent/'assets/NFM_Brand_Emblem.png')
@@ -90,4 +95,16 @@ class BadgeEffects:
                 d.arc(box,start,start+4+8*energy,fill=(245,135,148,round(90+130*energy)),width=max(2,round(self.height*.003)))
         d.ellipse((self.x-rad-2,self.y-rad-2,self.x+rad+2,self.y+rad+2),outline=(5,5,9,255),width=5)
         d.ellipse((self.x-rad,self.y-rad,self.x+rad,self.y+rad),outline=(213,211,216,255),width=max(2,round(self.height*.002)))
+        if self.accent_hsv is not None:
+            # Recolor the branding and graphics together; keep original PNG, alpha,
+            # neutral chrome and the fixed silver border unchanged.
+            rgba=np.asarray(image).copy()
+            hsv=np.asarray(image.convert('RGB').convert('HSV')).copy()
+            red=((hsv[:,:,0]<30)|(hsv[:,:,0]>225))&(hsv[:,:,1]>45)&(rgba[:,:,3]>0)
+            hue,saturation,_=self.accent_hsv
+            hsv[:,:,0][red]=round(hue*255)
+            hsv[:,:,1][red]=np.clip(hsv[:,:,1][red].astype(float)*max(.12,saturation)/.82,0,255).astype(np.uint8)
+            tinted=np.asarray(Image.fromarray(hsv,'HSV').convert('RGB'))
+            rgba[:,:,:3][red]=tinted[red]
+            image=Image.fromarray(rgba,'RGBA')
         return image
