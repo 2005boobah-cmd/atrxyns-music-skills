@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "brand": "UnkownSongs",
+  "version": 4,
+  "brand": "Nox FM",
   "palette": {
     "midnight": "#080B17",
     "ivory": "#F3EEE6",
@@ -46,10 +46,10 @@
       "unrelated random imagery",
       "hard flashes"
     ],
-    "brand_asset": "UnkownSongs_Brand_Emblem.png",
+    "brand_asset": "NFM_Brand_Emblem.png",
     "reuse_brand_asset": true,
-    "badge_asset": "assets/UnkownSongs_Brand_Emblem.png",
-    "badge_treatment": "gunmetal crescent, charcoal smoke, chrome wordmark, restrained crimson highlights, transparent silhouette"
+    "badge_asset": "assets/NFM_Brand_Emblem.png",
+    "badge_treatment": "Exact NFM chrome/crimson profile artwork, clipped inside a fixed silver circle; branding only, not scenery"
   },
   "layouts": {
     "16:9": {

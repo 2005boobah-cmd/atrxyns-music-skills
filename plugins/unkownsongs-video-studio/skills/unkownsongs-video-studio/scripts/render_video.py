@@ -38,7 +38,7 @@ def read_project(path, ff):
     if cfg.get("layout", "badge") not in ("badge", "ribbon"):
         raise ValueError("Use layout badge or ribbon")
     if not cfg.get("logo"):
-        cfg["logo"] = str(Path(__file__).resolve().parent.parent / "assets" / "UnkownSongs_Brand_Emblem.png")
+        cfg["logo"] = str(Path(__file__).resolve().parent.parent / "assets" / "NFM_Brand_Emblem.png")
     if cfg.get("logo"):
         from PIL import Image
         cfg["logo"] = str(local(cfg["logo"]))
@@ -191,7 +191,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         text=str(text)
         if f.getlength(text)>safe:raise ValueError("Brand/title too wide; shorten title or adjust type")
         d.text((cx-f.getlength(text)/2,y),text,font=f,fill=fill,stroke_width=max(1,round(unit)),stroke_fill=(8,11,23,100))
-    center(h*(.095 if portrait else .055),cfg.get("brand","UnkownSongs"),bf,(243,238,230,245))
+    center(h*(.095 if portrait else .055),cfg.get("brand","Nox FM"),bf,(243,238,230,245))
     center(h*(.135 if portrait else .105),cfg.get("title",""),tf,(228,224,236,225))
     im.save(work/"overlay.png")
 
@@ -348,7 +348,7 @@ def draw_badge(overlay, cfg, font):
         draw = ImageDraw.Draw(badge)
         draw.ellipse((.42*diameter,.16*diameter,.58*diameter,.32*diameter), fill="#DFDAD0")
         wordmark = ImageFont.truetype(str(font), max(12,round(diameter*.105)))
-        draw.text((radius, radius*1.13), cfg.get("brand","UnkownSongs"),
+        draw.text((radius, radius*1.13), cfg.get("brand","Nox FM"),
                   font=wordmark, fill="#F6F5EE", anchor="mm")
     mask = Image.new("L", size)
     ImageDraw.Draw(mask).ellipse((0,0,diameter-1,diameter-1), fill=255)
@@ -469,7 +469,14 @@ class BadgeEffects:
             diameter=round(2*self.radius*(1+.045*bass+.025*kick))
             diameter=round(diameter/2)*2
             if diameter not in self.logo_cache:
-                self.logo_cache[diameter]=ImageOps.contain(self.logo,(diameter,diameter),Image.Resampling.LANCZOS)
+                # Keep the exact square NFM artwork within the fixed circle.
+                from PIL import ImageDraw, ImageChops
+                size = min(diameter, round(2*self.radius*.96))
+                emblem = ImageOps.contain(self.logo,(size,size),Image.Resampling.LANCZOS)
+                mask = Image.new('L', emblem.size, 0)
+                ImageDraw.Draw(mask).ellipse((0,0,emblem.width-1,emblem.height-1),fill=255)
+                emblem.putalpha(ImageChops.multiply(emblem.getchannel('A'),mask))
+                self.logo_cache[diameter]=emblem
             emblem=self.logo_cache[diameter]
             image.alpha_composite(emblem,(round(self.x-emblem.width/2),round(self.y-emblem.height/2-self.radius*.018*kick)))
         return image
@@ -491,7 +498,7 @@ def main():
     if args.preview is not None and (not math.isfinite(args.preview) or args.preview<=0):raise ValueError("Preview duration must be positive")
     if args.preview is None and start:raise ValueError("--start is only for preview exports")
     duration=min(args.preview,total-start) if args.preview is not None else total
-    filename=args.output or cfg.get("output","UnkownSongs_Music_Video.mp4")
+    filename=args.output or cfg.get("output","NoxFM_Music_Video.mp4")
     output=(p.parent/filename).resolve()
     if output.suffix.lower()!=".mp4":raise ValueError("Use an MP4 output")
     protected={audio,p}|{s["path"] for s in scenes}

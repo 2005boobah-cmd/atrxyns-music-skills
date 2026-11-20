@@ -26,7 +26,7 @@ Search brief structure: real location/action, time and lighting, emotional funct
 
 ## Centered badge and visualizer
 
-Reuse the permanent detailed moon-and-smoke PNG at ../assets/UnkownSongs_Brand_Emblem.png with its original transparent silhouette, sharp custom wordmark, gunmetal texture and crimson highlights. Keep a clean fixed silver circular border around the emblem.
+Reuse the permanent chrome/crimson NFM PNG at ../assets/NFM_Brand_Emblem.png with its exact NFM wordmark, gunmetal texture and crimson highlights. Keep a clean fixed silver circular border around the emblem.
 
 The current treatment is a loose smoky aura emitted directly from the circle circumference. Its root hugs the border while bass pushes feathered wisps outward. Use uneven density, fine turbulent curls and soft open gaps within the smoke. The effect must not become a solid rubber ring, an opaque connected blob, detached solid pieces, an orbiting band separated from the circle, or a discrete bar equalizer.
 

@@ -4,7 +4,7 @@ Resolve these scripts relative to this skill directory. The file paths below are
 
 ```json
 {
-  "brand": "UnkownSongs",
+  "brand": "Nox FM",
   "title": "Song title",
   "audio": "song.mp3",
   "lyrics": "reviewed_cues.json",
@@ -17,11 +17,11 @@ Resolve these scripts relative to this skill directory. The file paths below are
     {"file": "scene_01.png", "duration": 20, "provenance": "generated"},
     {"file": "scene_02.mp4", "duration": 24, "provenance": "user"}
   ],
-  "output": "UnkownSongs_Song_Title.mp4"
+  "output": "NoxFM_Song_Title.mp4"
 }
 ```
 
-Omit `layout` for the centered badge style. The renderer automatically uses the bundled transparent `assets/UnkownSongs_Brand_Emblem.png`. Add `"logo": "custom_emblem.png"` only to override it with user-requested artwork. Preserve alpha; do not apply a circular crop. The default fallback is a simple UnkownSongs badge. Use `"layout": "ribbon"` for the earlier horizontal spectrum. Choose the layout explicitly when recreating an older project.
+Omit `layout` for the centered badge style. The renderer automatically uses the bundled `assets/NFM_Brand_Emblem.png`. Add `"logo": "custom_emblem.png"` only to override it with user-requested artwork. The source PFP has a dark square background; the renderer clips it inside the fixed circular border. The default fallback is a simple Nox FM badge. Use `"layout": "ribbon"` for the earlier horizontal spectrum. Choose the layout explicitly when recreating an older project.
 
 All paths resolve relative to the project file. Dimensions must be even. Use 1080×1920 for 9:16 and 1920×1080 for 16:9. Other ratios are supported but require manual composition review. Provide an actual installed regular and bold font path to avoid platform-dependent italic fallbacks.
 

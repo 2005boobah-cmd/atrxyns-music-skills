@@ -3,9 +3,9 @@ name: unkownsongs-video-studio
 description: Create or improve UnkownSongs music videos, lyric videos, audio visualizers, and equalizers from uploaded songs. Use when the user asks to turn a song into a video, add timed lyrics, improve music-video backgrounds, restyle an equalizer, or make horizontal or vertical branded music content. Keep UnkownSongs styling consistent while tailoring cinematic backgrounds to the music.
 ---
 
-# UnkownSongs Video Studio
+# Nox FM Video Studio
 
-Produce the actual video file, not merely a storyboard or prompts. Keep the exact brand spelling **UnkownSongs** (not UnknownSongs). Default to a free local workflow and include timed lyrics when they are supplied. Do not impose song-lyric character limits from songwriting tools on a video.
+Produce the actual video file, not merely a storyboard or prompts. Use **Nox FM** as the channel name and the exact equal-sized **NFM** lettering in the bundled logo. Keep the technical skill name unchanged for installation compatibility. Default to a free local workflow and include timed lyrics when they are supplied. Do not impose song-lyric character limits from songwriting tools on a video.
 
 ## Start and preserve progress
 
@@ -17,7 +17,7 @@ Produce the actual video file, not merely a storyboard or prompts. Keep the exac
 
 ## Keep the identity; improve the scene
 
-Default to the composition from the published “Questions” video. Place the circular UnkownSongs badge in the center over a cinematic, almost symmetrical scene, with a soft backlight, drifting particles and large white lyrics below. Adapt the scene to each song. Use the clean original badge when available and keep player interface elements out of the artwork.
+Default to the composition from the published “Questions” video. Place the circular NFM badge in the center over a cinematic, almost symmetrical scene, with a soft backlight, drifting particles and large white lyrics below. Adapt the scene to each song. Use the clean original badge when available and keep player interface elements out of the artwork.
 
 Choose cinematic environments that support the lyric's imagery and emotional arc. Use distinct connected scenes, credible lighting, film texture and subtle camera movement. Read [lyric interpretation](references/lyric-interpretation.md) and complete its section-by-section meaning and scene plan before sourcing assets. Prefer a small set of excellent frames with meaningful progression over a large random slideshow. Avoid identical framing, unrelated fantasy scenery and invented real evidence.
 
@@ -25,7 +25,7 @@ Use only real photographs and real video clips for all scene imagery and backgro
 
 ## Make the visualizer feel designed
 
-Use the permanent detailed gunmetal/crimson moon-and-smoke transparent PNG at assets/UnkownSongs_Brand_Emblem.png. The renderer loads this exact asset automatically; preserve its custom wordmark and alpha rather than regenerating the logo. Keep a crisp fixed silver circular border around it.
+Use the permanent chrome/crimson NFM profile PNG at assets/NFM_Brand_Emblem.png. This is branding only, never background scenery. Do not bundle a stock scene pack or reuse the logo/PFP as a scene. Select licensed real photographs and clips for each song after interpreting its lyrics. The renderer loads this exact logo automatically; preserve its exact NFM lettering and colors rather than regenerating the logo. Keep a crisp fixed silver circular border around it.
 
 The default reactive treatment is a loose, layered smoky aura rooted directly at the circle edge. Wisps billow and stretch outward from that circumference. Do not leave an empty gap or make an orbiting outer ring. Use uneven density, soft feathering, fine curls and natural gaps within the smoke, rather than a solid rubber band, opaque sheet, gear teeth, separate solid chunks, thin spectrum bars, or a uniformly blurred ring.
 
